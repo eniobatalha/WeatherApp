@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import { BellRinging, Calendar, CaretDown, MapPin } from 'phosphor-react-native';
 import SunAndRain from "../../assets/10d.svg";
 import { MaterialIcons, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
@@ -8,6 +8,21 @@ import CardClima from '../../components/CardClima';
 import LineForecast from '../../components/LineForecast';
 
 export function Home() {
+
+    const [cityName, setCityName] = useState('Jaboatão dos Guararapes');
+    const [showCityInput, setShowCityInput] = useState(false);
+    const [newCityName, setNewCityName] = useState('');
+
+    const handleSaveCity = () => {
+        if (newCityName.trim() !== '') {
+            setCityName(newCityName);
+            setShowCityInput(false);
+        } else {
+            alert('Por favor, digite o nome de uma cidade válida.');
+        }
+    };
+    
+
     const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(null);
 
     const handleCardPress = (index: number) => {
@@ -20,11 +35,28 @@ export function Home() {
                 <View style={styles.header}>
                     <View style={styles.headerLeft}>
                         <MapPin color='#fff' size={25} />
-                        <Text style={styles.headerLeftText}>Jaboatão dos Guararapes</Text>
-                        <CaretDown color='#fff' size={25} />
+                        <Text style={styles.headerLeftText}>{cityName}</Text>
+                        <TouchableOpacity onPress={() => setShowCityInput((prev) => !prev)}>
+                            <CaretDown color='#fff' size={25} />
+                        </TouchableOpacity>
                     </View>
                     <BellRinging color='#fff' size={25} />
                 </View>
+
+                {/* Se o showCityInput for true, renderizar o componente de entrada de cidade */}
+                {showCityInput && (
+                    <View style={styles.cityInputContainer}>
+                        <TextInput
+                            style={styles.cityInput}
+                            placeholder="Digite o nome da cidade"
+                            placeholderTextColor={'#0B1E3B'}
+                            onChangeText={text => setNewCityName(text)}
+                        />
+                        <TouchableOpacity style={styles.saveButton} onPress={handleSaveCity}>
+                            <Text style={styles.saveButtonText}>Salvar</Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
 
                 <View style={styles.info}>
                     <SunAndRain width={200} height={200} />
@@ -142,6 +174,31 @@ const styles = StyleSheet.create({
     headerLeftText: {
         color: '#fff',
         fontSize: 18,
+        fontWeight: '600',
+    },
+    cityInputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    cityInput: {
+        flex: 1,
+        borderWidth: 1,
+        borderColor: '#fff',
+        borderRadius: 5,
+        color: '#fff',
+        padding: 10,
+        marginRight: 10,
+    },
+    saveButton: {
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+    },
+    saveButtonText: {
+        color: '#0C3573',
+        fontSize: 16,
         fontWeight: '600',
     },
     info: {
