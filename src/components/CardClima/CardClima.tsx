@@ -1,20 +1,21 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Sun from "../../src/assets/01d.svg";
-import Moon from "../../src/assets/01n.svg";
-import SunAndCloud from "../../src/assets/02d.svg";
-import MoonAndCloud from "../../src/assets/02n.svg";
-import Cloud from "../../src/assets/03d.svg";
-import SunAndHail from "../../src/assets/09d.svg";
-import MoonAndHail from "../../src/assets/09n.svg";
-import SunAndRain from "../../src/assets/10d.svg";
-import MoonAndRain from "../../src/assets/10n.svg";
-import SunAndStorm from "../../src/assets/11d.svg";
-import MoonAndStorm from "../../src/assets/11n.svg";
-import SunAndSnow from "../../src/assets/13d.svg";
-import MoonAndSnow from "../../src/assets/13n.svg";
-import SunAndWind from "../../src/assets/50d.svg";
-import MoonAndWind from "../../src/assets/50n.svg";
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import Sun from "../../assets/01d.svg";
+import Moon from "../../assets/01n.svg";
+import SunAndCloud from "../../assets/02d.svg";
+import MoonAndCloud from "../../assets/02n.svg";
+import Cloud from "../../assets/03d.svg";
+import SunAndHail from "../../assets/09d.svg";
+import MoonAndHail from "../../assets/09n.svg";
+import SunAndRain from "../../assets/10d.svg";
+import MoonAndRain from "../../assets/10n.svg";
+import SunAndStorm from "../../assets/11d.svg";
+import MoonAndStorm from "../../assets/11n.svg";
+import SunAndSnow from "../../assets/13d.svg";
+import MoonAndSnow from "../../assets/13n.svg";
+import SunAndWind from "../../assets/50d.svg";
+import MoonAndWind from "../../assets/50n.svg";
+import styles from './styles';
 
 interface CardClimaProps {
     weatherType: string;
@@ -72,26 +73,5 @@ const CardClima: React.FC<CardClimaProps> = ({ weatherType, temperatura, hora, s
         </TouchableOpacity>
     );
 };
-
-const styles = StyleSheet.create({
-    card: {
-        borderRadius: 10,
-        paddingVertical: 2,
-        paddingHorizontal: 6,
-        alignItems: 'center',
-        marginHorizontal: 5,
-        marginBottom: 5,
-    },
-    selectedCard: {
-        backgroundColor: 'rgba(29, 105, 222, 0.1)',
-        borderWidth: 1,
-        borderColor: '#fff',
-    },
-    text: {
-        color: '#fff',
-        fontSize: 16,
-        paddingVertical: 5,
-    },
-});
 
 export default CardClima;
