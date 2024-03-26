@@ -13,4 +13,6 @@ export interface WeatherData {
     wind_speedy: string;
     date: string;
     city_name: string;
+    sunrise: string;
+    sunset: string;
 }

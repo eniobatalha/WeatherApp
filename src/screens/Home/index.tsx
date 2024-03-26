@@ -101,7 +101,8 @@ export function Home() {
                         <SvgFromUri uri={weatherIcon} />
                         <Text style={styles.infoTextH1}>{weatherData.temp}º</Text>
                         <Text style={styles.infoTextH2}>{weatherData.description}</Text>
-                        <Text style={styles.infoTextH2}>Max.: {weatherData.forecast[0].max}º Min.: {weatherData.forecast[0].min}º</Text>
+                        <Text style={styles.infoTextH3}>Max.: {weatherData.forecast[0].max}º Min.: {weatherData.forecast[0].min}º</Text>
+                        <Text style={styles.infoTextH3}>Nascer: {weatherData.sunrise} | Pôr: {weatherData.sunset}</Text>
                     </View>
                 )}
 
@@ -131,7 +132,7 @@ export function Home() {
                         <View style={styles.box2Line2}>
                             <CardClima
                                 temperatura="28º"
-                                weatherType="SunAndCloud"
+                                weatherType="Cloud"
                                 hora="11:00"
                                 selected={selectedCardIndex === 0}
                                 onPress={() => handleCardPress(0)}
@@ -145,14 +146,14 @@ export function Home() {
                             />
                             <CardClima
                                 temperatura="31º"
-                                weatherType="Cloud"
+                                weatherType="SunAndCloud"
                                 hora="13:00"
                                 selected={selectedCardIndex === 2}
                                 onPress={() => handleCardPress(2)}
                             />
                             <CardClima
                                 temperatura="32º"
-                                weatherType="Cloud"
+                                weatherType="SunAndRain"
                                 hora="14:00"
                                 selected={selectedCardIndex === 3}
                                 onPress={() => handleCardPress(3)}
@@ -169,9 +170,9 @@ export function Home() {
                         </View>
                         <View style={styles.box3Line2}>
                             <LineForecast
-                                diaDaSemana={weatherData.forecast[1].weekday}
-                                temperaturaMax={weatherData.forecast[1].max}
-                                temperaturaMin={weatherData.forecast[1].min}
+                                diaDaSemana={weatherData.forecast[0].weekday}
+                                temperaturaMax={weatherData.forecast[0].max}
+                                temperaturaMin={weatherData.forecast[0].min}
                                 weatherType="SunAndCloud"
                             />
                         </View>

@@ -65,6 +65,10 @@ export default StyleSheet.create({
         color: '#fff',
         fontSize: 20,
     },
+    infoTextH3: {
+        color: '#fff',
+        fontSize: 16,
+    },
     box2Text: {
         color: '#fff',
         fontSize: 16,
