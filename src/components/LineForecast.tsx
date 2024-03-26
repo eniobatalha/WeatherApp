@@ -67,8 +67,8 @@ const LineForecast: React.FC<LineForecastProps> = ({ weatherType, temperaturaMax
                 <Text style={styles.text}>{diaDaSemana}</Text>
                 {getWeatherIcon(weatherType)}
                 <View style={styles.temperaturasContainer}>
-                    <Text style={styles.temperaturaText}>{temperaturaMax}</Text>
-                    <Text style={styles.temperaturaText}>{temperaturaMin}</Text>
+                    <Text style={styles.temperaturaText}>{temperaturaMax}º</Text>
+                    <Text style={styles.temperaturaText}>{temperaturaMin}º</Text>
                 </View>
             </View>
         </TouchableOpacity>

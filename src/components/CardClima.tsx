@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     selectedCard: {
         backgroundColor: 'rgba(29, 105, 222, 0.1)',
         borderWidth: 1,
-        borderColor: '#1D69DE',
+        borderColor: '#fff',
     },
     text: {
         color: '#fff',
