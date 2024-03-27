@@ -15,6 +15,7 @@ export function Home() {
     const [showCityInput, setShowCityInput] = useState(false);
     const [newCityName, setNewCityName] = useState('');
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+    const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(null);
     const [conditionSlugs, setConditionSlugs] = useState(['', '', '', '', '']);
     const [hour, setHour] = useState('');
 
@@ -22,8 +23,9 @@ export function Home() {
         fetchWeatherData('Jaboatão dos Guararapes');
     }, []);
 
+    // Função para buscar os dados do clima de uma cidade
     const fetchWeatherData = (city: string) => {
-        const apiKey = '7398896d';
+        const apiKey = 'SUA-CHAVE';
         const encodedCity = encodeURIComponent(city);
         fetch(`https://api.hgbrasil.com/weather?key=${apiKey}&city_name=${encodedCity}`)
             .then(response => response.json())
@@ -43,6 +45,7 @@ export function Home() {
             });
     };
 
+    // Função para lidar com o salvamento de uma nova cidade
     const handleSaveCity = () => {
         if (newCityName.trim() !== '') {
             fetchWeatherData(newCityName);
@@ -52,12 +55,12 @@ export function Home() {
         }
     };
 
-    const [selectedCardIndex, setSelectedCardIndex] = useState<number | null>(null);
-
+    // Função para lidar com o pressionar de um card
     const handleCardPress = (index: number) => {
         setSelectedCardIndex(index === selectedCardIndex ? null : index);
     };
 
+    // Função para retornar as cores do gradiente de acordo com o horário
     const getGradientColors = () => {
         if (weatherData && weatherData.currently === 'noite') {
             return ["#0C3573", "#1053D6"];
@@ -66,6 +69,7 @@ export function Home() {
         }
     };
 
+    // Função para retornar a cor de fundo da caixa de acordo com o horário
     const getBoxBackgroundColor = () => {
         if (weatherData && weatherData.currently === 'noite') {
             return "#0f2a53";
