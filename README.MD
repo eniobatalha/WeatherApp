@@ -1,4 +1,4 @@
-# Clima App
+# WeatherApp
 
 Um aplicativo simples para verificar a previsão do tempo de diferentes cidades.
 
