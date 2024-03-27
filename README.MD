@@ -19,12 +19,15 @@ Certifique-se de ter o Node.js e o npm instalados globalmente em sua máquina.
 ## Uso
 
 1. Após a instalação, inicie o aplicativo.
+(`npx expo start`)
 
-2. O aplicativo DEVERÁ ser testado em um dispositivo móvel ou emulador de celular pois não foi desenvolvido para ser testado via navegador.
+2. O aplicativo DEVERÁ ser testado em um dispositivo móvel ou emulador de celular pois não foi desenvolvido para ser testado via navegador. Se for testar do seu celular, será preciso baixar o app (`Expo Go`) na loja de apps do seu aparelho.
 
-3. As informações são consumidas da API https://api.hgbrasil.com/weather portanto, se tiver algum problema para carregar as informações, recomendo criar uma conta em https://console.hgbrasil.com/ e cadastar uma nova chave de API com opção de plano gratuito, depois basta substituir a chave da linha 28 do index.tsx por sua chave gerada no console. A chave tem um limite de consultas, após bloqueado basta excluir a chave e criar uma nova chave gratuita.
+3. Se você instalou todas dependências corretamente, no terminal será exibido um QR CODE para que o meu app possa ser lido no Expo Go do seu aparelho.
 
-4. Insira o nome de uma cidade na barra de pesquisa para ver a previsão do tempo para essa cidade.
+4. As informações são consumidas da API https://api.hgbrasil.com/weather portanto, se tiver algum problema para carregar as informações, recomendo criar uma conta em https://console.hgbrasil.com/ e cadastar uma nova chave de API com opção de plano gratuito, depois basta substituir a chave da linha 28 do index.tsx por sua chave gerada no console. A chave tem um limite de consultas, após bloqueado basta excluir a chave e criar uma nova chave gratuita.
+
+5. Insira o nome de uma cidade na barra de pesquisa para ver a previsão do tempo para essa cidade.
 
 ## Recursos utilizados
 
