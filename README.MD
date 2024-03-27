@@ -7,13 +7,13 @@ Um aplicativo simples para verificar a previsão do tempo de diferentes cidades.
 Certifique-se de ter o Node.js e o npm instalados globalmente em sua máquina.
 
 1. Clone este repositório:
-git clone https://github.com/eniobatalha/WeatherApp.git
+(`git clone https://github.com/eniobatalha/WeatherApp.git`)
 
 2. Navegue até o diretório do projeto:
-cd WeatherApp
+(`cd WeatherApp`)
 
 3. Instale as dependências do projeto:
-npm install
+(`npm install`)
 
 
 ## Uso
