@@ -6,7 +6,7 @@ export interface WeatherData {
         min: string;
         weekday: string;
         rain_probability: string;
-        condition_slug: string;
+        condition: string;
     }[];
     currently: 'dia' | 'noite';
     humidity: string;

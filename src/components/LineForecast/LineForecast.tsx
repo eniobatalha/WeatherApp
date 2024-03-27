@@ -1,20 +1,17 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import Sun from "../../assets/01d.svg";
-import Moon from "../../assets/01n.svg";
-import SunAndCloud from "../../assets/02d.svg";
-import MoonAndCloud from "../../assets/02n.svg";
-import Cloud from "../../assets/03d.svg";
-import SunAndHail from "../../assets/09d.svg";
-import MoonAndHail from "../../assets/09n.svg";
-import SunAndRain from "../../assets/10d.svg";
-import MoonAndRain from "../../assets/10n.svg";
-import SunAndStorm from "../../assets/11d.svg";
-import MoonAndStorm from "../../assets/11n.svg";
-import SunAndSnow from "../../assets/13d.svg";
-import MoonAndSnow from "../../assets/13n.svg";
-import SunAndWind from "../../assets/50d.svg";
-import MoonAndWind from "../../assets/50n.svg";
+import Clearday from "../../assets/svg/clear_day.svg";
+import Noneday from "../../assets/svg/none_day.svg";
+import ClearNight from "../../assets/svg/clear_night.svg";
+import NoneNight from "../../assets/svg/none_night.svg";
+import Cloud from "../../assets/svg/cloud.svg";
+import CloudyDay from "../../assets/svg/cloudly_day.svg";
+import CloudyNight from "../../assets/svg/cloudly_night.svg";
+import Fog from "../../assets/svg/fog.svg";
+import Hail from "../../assets/svg/hail.svg";
+import Rain from "../../assets/svg/rain.svg";
+import Snow from "../../assets/svg/snow.svg";
+import Storm from "../../assets/svg/storm.svg";
 import styles from './styles';
 
 interface LineForecastProps {
@@ -26,36 +23,30 @@ interface LineForecastProps {
 
 const getWeatherIcon = (weatherType: string) => {
     switch (weatherType) {
-        case 'Sun':
-            return <Sun width={20} height={20} />;
-        case 'Moon':
-            return <Moon width={20} height={20} />;
-        case 'SunAndCloud':
-            return <SunAndCloud width={20} height={20} />;
-        case 'MoonAndCloud':
-            return <MoonAndCloud width={20} height={20} />;
-        case 'Cloud':
+        case 'clear_day':
+            return <Clearday width={20} height={20} />;
+        case 'none_day':
+            return <Noneday width={20} height={20} />;
+        case 'clear_night':
+            return <ClearNight width={20} height={20} />;
+        case 'none_night':
+            return <NoneNight width={20} height={20} />;
+        case 'cloud':
             return <Cloud width={20} height={20} />;
-        case 'SunAndHail':
-            return <SunAndHail width={20} height={20} />;
-        case 'MoonAndHail':
-            return <MoonAndHail width={20} height={20} />;
-        case 'SunAndRain':
-            return <SunAndRain width={20} height={20} />;
-        case 'MoonAndRain':
-            return <MoonAndRain width={20} height={20} />;
-        case 'SunAndStorm':
-            return <SunAndStorm width={20} height={20} />;
-        case 'MoonAndStorm':
-            return <MoonAndStorm width={20} height={20} />;
-        case 'SunAndSnow':
-            return <SunAndSnow width={20} height={20} />;
-        case 'MoonAndSnow':
-            return <MoonAndSnow width={20} height={20} />;
-        case 'SunAndWind':
-            return <SunAndWind width={20} height={20} />;
-        case 'MoonAndWind':
-            return <MoonAndWind width={20} height={20} />;
+        case 'cloudly_day':
+            return <CloudyDay width={20} height={20} />;
+        case 'cloudly_night':
+            return <CloudyNight width={20} height={20} />;
+        case 'fog':
+            return <Fog width={20} height={20} />;
+        case 'hail':
+            return <Hail width={20} height={20} />;
+        case 'rain':
+            return <Rain width={20} height={20} />;
+        case 'snow':
+            return <Snow width={20} height={20} />;
+        case 'storm':
+            return <Storm width={20} height={20} />;
         default:
             return null;
     }

@@ -16,6 +16,7 @@ export function Home() {
     const [newCityName, setNewCityName] = useState('');
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
     const [weatherIcon, setWeatherIcon] = useState('');
+    const [conditionSlugs, setConditionSlugs] = useState(['', '', '', '', '']);
 
     useEffect(() => {
         fetchWeatherData('Jaboatão dos Guararapes');
@@ -23,7 +24,7 @@ export function Home() {
 
 
     const fetchWeatherData = (city: string) => {
-        const apiKey = '977e52a1';
+        const apiKey = '6cd20c76';
         const encodedCity = encodeURIComponent(city);
         fetch(`https://api.hgbrasil.com/weather?key=${apiKey}&city_name=${encodedCity}`)
             .then(response => response.json())
@@ -32,6 +33,8 @@ export function Home() {
                     setWeatherData(data.results);
                     setCityName(data.results.city);
                     setWeatherIcon('https://assets.hgbrasil.com/weather/icons/conditions/' + data.results.condition_slug + '.svg');
+                    const newConditionSlugs = data.results.forecast.slice(0, 5).map((item: { condition: any; }) => item.condition);
+                    setConditionSlugs(newConditionSlugs);
                 } else {
                     alert('Cidade não encontrada.');
                 }
@@ -132,28 +135,28 @@ export function Home() {
                         <View style={styles.box2Line2}>
                             <CardClima
                                 temperatura="28º"
-                                weatherType="Cloud"
+                                weatherType={conditionSlugs[0]}
                                 hora="11:00"
                                 selected={selectedCardIndex === 0}
                                 onPress={() => handleCardPress(0)}
                             />
                             <CardClima
                                 temperatura="30º"
-                                weatherType="SunAndCloud"
+                                weatherType={conditionSlugs[1]}
                                 hora="12:00"
                                 selected={selectedCardIndex === 1}
                                 onPress={() => handleCardPress(1)}
                             />
                             <CardClima
                                 temperatura="31º"
-                                weatherType="SunAndCloud"
+                                weatherType={conditionSlugs[2]}
                                 hora="13:00"
                                 selected={selectedCardIndex === 2}
                                 onPress={() => handleCardPress(2)}
                             />
                             <CardClima
                                 temperatura="32º"
-                                weatherType="SunAndRain"
+                                weatherType={conditionSlugs[4]}
                                 hora="14:00"
                                 selected={selectedCardIndex === 3}
                                 onPress={() => handleCardPress(3)}
@@ -173,7 +176,7 @@ export function Home() {
                                 diaDaSemana={weatherData.forecast[0].weekday}
                                 temperaturaMax={weatherData.forecast[0].max}
                                 temperaturaMin={weatherData.forecast[0].min}
-                                weatherType="SunAndCloud"
+                                weatherType={conditionSlugs[0]}
                             />
                         </View>
                         <View style={styles.box3Line2}>
@@ -181,7 +184,7 @@ export function Home() {
                                 diaDaSemana={weatherData.forecast[1].weekday}
                                 temperaturaMax={weatherData.forecast[1].max}
                                 temperaturaMin={weatherData.forecast[1].min}
-                                weatherType="SunAndCloud"
+                                weatherType={conditionSlugs[1]}
                             />
                         </View>
                         <View style={styles.box3Line2}>
@@ -189,7 +192,7 @@ export function Home() {
                                 diaDaSemana={weatherData.forecast[2].weekday}
                                 temperaturaMax={weatherData.forecast[2].max}
                                 temperaturaMin={weatherData.forecast[2].min}
-                                weatherType="Sun"
+                                weatherType={conditionSlugs[2]}
                             />
                         </View>
                         <View style={styles.box3Line2}>
@@ -197,7 +200,7 @@ export function Home() {
                                 diaDaSemana={weatherData.forecast[3].weekday}
                                 temperaturaMax={weatherData.forecast[3].max}
                                 temperaturaMin={weatherData.forecast[3].min}
-                                weatherType="Sun"
+                                weatherType={conditionSlugs[3]}
                             />
                         </View>
                         <View style={styles.box3Line2}>
@@ -205,7 +208,7 @@ export function Home() {
                                 diaDaSemana={weatherData.forecast[4].weekday}
                                 temperaturaMax={weatherData.forecast[4].max}
                                 temperaturaMin={weatherData.forecast[4].min}
-                                weatherType="Sun"
+                                weatherType={conditionSlugs[4]}
                             />
                         </View>
 
