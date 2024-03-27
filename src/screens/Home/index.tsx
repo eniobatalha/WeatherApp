@@ -4,27 +4,26 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { BellRinging, Calendar, CaretDown, MapPin } from 'phosphor-react-native';
 import { MaterialIcons, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import { WeatherData } from '../../interfaces/WeatherTypes';
-import { SvgFromUri } from 'react-native-svg';
-import styles from './styles';
 import CityInput from '../../components/CityInput/CityInput';
 import CardClima from '../../components/CardClima/CardClima';
 import LineForecast from '../../components/LineForecast/LineForecast';
+import MainInfo from '../../components/MainInfo/MainInfo';
+import styles from './styles';
 
 export function Home() {
     const [cityName, setCityName] = useState('Jaboatão dos Guararapes');
     const [showCityInput, setShowCityInput] = useState(false);
     const [newCityName, setNewCityName] = useState('');
     const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
-    const [weatherIcon, setWeatherIcon] = useState('');
     const [conditionSlugs, setConditionSlugs] = useState(['', '', '', '', '']);
+    const [hour, setHour] = useState('');
 
     useEffect(() => {
         fetchWeatherData('Jaboatão dos Guararapes');
     }, []);
 
-
     const fetchWeatherData = (city: string) => {
-        const apiKey = '6cd20c76';
+        const apiKey = '7398896d';
         const encodedCity = encodeURIComponent(city);
         fetch(`https://api.hgbrasil.com/weather?key=${apiKey}&city_name=${encodedCity}`)
             .then(response => response.json())
@@ -32,9 +31,9 @@ export function Home() {
                 if (data.valid_key && data.results.temp) {
                     setWeatherData(data.results);
                     setCityName(data.results.city);
-                    setWeatherIcon('https://assets.hgbrasil.com/weather/icons/conditions/' + data.results.condition_slug + '.svg');
                     const newConditionSlugs = data.results.forecast.slice(0, 5).map((item: { condition: any; }) => item.condition);
                     setConditionSlugs(newConditionSlugs);
+                    setHour(data.results.time.split(':')[0] + ':00')
                 } else {
                     alert('Cidade não encontrada.');
                 }
@@ -100,13 +99,15 @@ export function Home() {
                 )}
 
                 {weatherData && (
-                    <View style={styles.info}>
-                        <SvgFromUri uri={weatherIcon} />
-                        <Text style={styles.infoTextH1}>{weatherData.temp}º</Text>
-                        <Text style={styles.infoTextH2}>{weatherData.description}</Text>
-                        <Text style={styles.infoTextH3}>Max.: {weatherData.forecast[0].max}º Min.: {weatherData.forecast[0].min}º</Text>
-                        <Text style={styles.infoTextH3}>Nascer: {weatherData.sunrise} | Pôr: {weatherData.sunset}</Text>
-                    </View>
+                    <MainInfo
+                        weatherType={weatherData.condition_slug}
+                        temp={weatherData.temp}
+                        description={weatherData.description}
+                        max={weatherData.forecast[0].max}
+                        min={weatherData.forecast[0].min}
+                        sunrise={weatherData.sunrise}
+                        sunset={weatherData.sunset}
+                    />
                 )}
 
                 {weatherData && (
@@ -133,34 +134,16 @@ export function Home() {
                             <Text style={styles.box2Text}>{weatherData.date}</Text>
                         </View>
                         <View style={styles.box2Line2}>
-                            <CardClima
-                                temperatura="28º"
-                                weatherType={conditionSlugs[0]}
-                                hora="11:00"
-                                selected={selectedCardIndex === 0}
-                                onPress={() => handleCardPress(0)}
-                            />
-                            <CardClima
-                                temperatura="30º"
-                                weatherType={conditionSlugs[1]}
-                                hora="12:00"
-                                selected={selectedCardIndex === 1}
-                                onPress={() => handleCardPress(1)}
-                            />
-                            <CardClima
-                                temperatura="31º"
-                                weatherType={conditionSlugs[2]}
-                                hora="13:00"
-                                selected={selectedCardIndex === 2}
-                                onPress={() => handleCardPress(2)}
-                            />
-                            <CardClima
-                                temperatura="32º"
-                                weatherType={conditionSlugs[4]}
-                                hora="14:00"
-                                selected={selectedCardIndex === 3}
-                                onPress={() => handleCardPress(3)}
-                            />
+                            {[0, 1, 2, 3].map((index) => (
+                                <CardClima
+                                    key={index}
+                                    temperatura={weatherData.temp}
+                                    weatherType={weatherData.condition_slug}
+                                    hora={((parseInt(hour.split(':')[0]) + index) % 24) + ':00'}
+                                    selected={selectedCardIndex === index}
+                                    onPress={() => handleCardPress(index)}
+                                />
+                            ))}
                         </View>
                     </View>
                 )}
@@ -171,47 +154,19 @@ export function Home() {
                             <Text style={styles.boxTextBold}>Próximas previsões</Text>
                             <Calendar color='#fff' size={25} />
                         </View>
-                        <View style={styles.box3Line2}>
-                            <LineForecast
-                                diaDaSemana={weatherData.forecast[0].weekday}
-                                temperaturaMax={weatherData.forecast[0].max}
-                                temperaturaMin={weatherData.forecast[0].min}
-                                weatherType={conditionSlugs[0]}
-                            />
-                        </View>
-                        <View style={styles.box3Line2}>
-                            <LineForecast
-                                diaDaSemana={weatherData.forecast[1].weekday}
-                                temperaturaMax={weatherData.forecast[1].max}
-                                temperaturaMin={weatherData.forecast[1].min}
-                                weatherType={conditionSlugs[1]}
-                            />
-                        </View>
-                        <View style={styles.box3Line2}>
-                            <LineForecast
-                                diaDaSemana={weatherData.forecast[2].weekday}
-                                temperaturaMax={weatherData.forecast[2].max}
-                                temperaturaMin={weatherData.forecast[2].min}
-                                weatherType={conditionSlugs[2]}
-                            />
-                        </View>
-                        <View style={styles.box3Line2}>
-                            <LineForecast
-                                diaDaSemana={weatherData.forecast[3].weekday}
-                                temperaturaMax={weatherData.forecast[3].max}
-                                temperaturaMin={weatherData.forecast[3].min}
-                                weatherType={conditionSlugs[3]}
-                            />
-                        </View>
-                        <View style={styles.box3Line2}>
-                            <LineForecast
-                                diaDaSemana={weatherData.forecast[4].weekday}
-                                temperaturaMax={weatherData.forecast[4].max}
-                                temperaturaMin={weatherData.forecast[4].min}
-                                weatherType={conditionSlugs[4]}
-                            />
-                        </View>
-
+                        
+                            {weatherData.forecast.slice(1, 6).map((forecastItem, index) => (
+                                <View style={styles.box3Line2}>
+                                    <LineForecast
+                                        key={forecastItem.weekday}
+                                        diaDaSemana={forecastItem.weekday}
+                                        temperaturaMax={forecastItem.max}
+                                        temperaturaMin={forecastItem.min}
+                                        weatherType={conditionSlugs[index]}
+                                    />
+                                </View>
+                            ))}
+                        
                     </View>
                 )}
 

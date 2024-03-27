@@ -49,26 +49,6 @@ export default StyleSheet.create({
         fontSize: 16,
         fontWeight: '600',
     },
-    info: {
-        paddingTop: 20,
-        paddingBottom: 25,
-        alignItems: 'center',
-    },
-    infoTextH1: {
-        color: '#fff',
-        fontSize: 64,
-        fontWeight: '600',
-        paddingTop: 5,
-        paddingBottom: 10,
-    },
-    infoTextH2: {
-        color: '#fff',
-        fontSize: 20,
-    },
-    infoTextH3: {
-        color: '#fff',
-        fontSize: 16,
-    },
     box2Text: {
         color: '#fff',
         fontSize: 16,
@@ -80,7 +60,7 @@ export default StyleSheet.create({
     },
     box: {
         width: '100%',
-        marginBottom: 20,
+        marginBottom: 15,
         borderRadius: 25,
     },
     contentBox: {

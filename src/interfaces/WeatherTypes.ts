@@ -1,6 +1,7 @@
 export interface WeatherData {
     temp: string;
     description: string;
+    condition_slug: string;
     forecast: {
         max: string;
         min: string;
@@ -12,6 +13,7 @@ export interface WeatherData {
     humidity: string;
     wind_speedy: string;
     date: string;
+    time: string;
     city_name: string;
     sunrise: string;
     sunset: string;

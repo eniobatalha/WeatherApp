@@ -57,7 +57,7 @@ const CardClima: React.FC<CardClimaProps> = ({ weatherType, temperatura, hora, s
     return (
         <TouchableOpacity onPress={onPress}>
             <View style={[styles.card, selected && styles.selectedCard]}>
-                <Text style={styles.text}>{temperatura}</Text>
+                <Text style={styles.text}>{temperatura}º</Text>
                 {getWeatherIcon(weatherType)}
                 <Text style={styles.text}>{hora}</Text>
             </View>

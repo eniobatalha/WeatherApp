@@ -15,6 +15,7 @@ import Storm from "../../assets/svg/storm.svg";
 import styles from './styles';
 
 interface LineForecastProps {
+    key: string;
     weatherType: string;
     temperaturaMax: string;
     temperaturaMin: string;
