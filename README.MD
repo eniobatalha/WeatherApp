@@ -45,7 +45,9 @@ Contribuições são bem-vindas! Se você quiser melhorar este projeto, siga est
 
 ## Prints
 
-<img src="/screenshots/print1.png" alt="Tema dia" width="300" height="600">
-<img src="/screenshots/print2.png" alt="Tema noite" width="300" height="600">
+<div style="display: flex; gap: 10px;">
+    <img src="/screenshots/print1.png" alt="Print 1" width="300" height="600">
+    <img src="/screenshots/print2.png" alt="Print 2" width="300" height="600">
+</div>
 
 
